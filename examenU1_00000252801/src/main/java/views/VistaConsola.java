@@ -6,6 +6,7 @@ import exceptions.MedicoInexistenteException;
 import exceptions.MedicoNoDisponibleException;
 import exceptions.PacienteNoRegistradoException;
 import exceptions.SinMedicosException;
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -16,6 +17,10 @@ import models.dto.CitaDTO;
 import models.dto.MedicoDTO;
 import models.dto.PacienteDTO;
 
+/**
+ *
+ * @author Daniel Miramontes Iribe (00000252801)
+ */
 public class VistaConsola implements IObserver {
 
     private final ControlRegistrarCita control;
@@ -87,15 +92,25 @@ public class VistaConsola implements IObserver {
 
         try {
             List<MedicoDTO> medicosDTO = control.obtenerMedicosDTO();
-            System.out.println("\n--- Medicos disponibles ---");
+            System.out.println("\n--- Médicos disponibles ---");
             for (MedicoDTO m : medicosDTO) {
-                System.out.println("ID: " + m.getId()
+                // Convertir días a cadena
+                StringBuilder dias = new StringBuilder();
+                for (DayOfWeek d : m.getDiasConsulta()) {
+                    dias.append(d).append(" ");
+                }
+
+                System.out.println(
+                        "ID: " + m.getId()
                         + " | " + m.getNombre()
                         + " | " + m.getEspecialidad()
-                        + " | Consultorio: " + m.getConsultorio());
+                        + " | Consultorio: " + m.getConsultorio()
+                        + " | Dias: " + dias.toString().trim()
+                        + " | Horario: " + m.getHoraInicio() + " - " + m.getHoraFin()
+                );
             }
         } catch (SinMedicosException e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Error al obtener médicos: " + e.getMessage());
         }
 
         MedicoDTO medicoDTO = null;
@@ -104,9 +119,6 @@ public class VistaConsola implements IObserver {
             try {
                 int idMedico = Integer.parseInt(sc.nextLine());
                 medicoDTO = control.buscarMedicoDTO(idMedico);
-                if (medicoDTO == null) {
-                    System.out.println("ID de medico no valido, intente de nuevo.");
-                }
             } catch (NumberFormatException e) {
                 System.out.println("Ingrese un numero valido.");
             } catch (MedicoInexistenteException e) {

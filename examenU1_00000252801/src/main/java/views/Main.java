@@ -9,7 +9,7 @@ import models.dao.CitaDAO;
 
 /**
  *
- * @author itsyu
+ * @author Daniel Miramontes Iribe (00000252801)
  */
 public class Main {
 
