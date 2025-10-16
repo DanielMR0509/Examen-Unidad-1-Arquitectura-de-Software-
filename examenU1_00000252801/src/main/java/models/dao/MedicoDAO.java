@@ -1,6 +1,7 @@
 package models.dao;
 
 import exceptions.MedicoNoDisponibleException;
+import exceptions.SinMedicosException;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -36,8 +37,12 @@ public class MedicoDAO {
     /**
      * Devuelve la lista completa de médicos registrados.
      * @return Lista de objetos Medico
+     * @throws SinMedicosException si no hay medicos registrados
      */
-    public static List<Medico> obtenerMedicos() {
+    public static List<Medico> obtenerMedicos() throws SinMedicosException {
+        if(MEDICOS.isEmpty()) {
+            throw new SinMedicosException("No hay medicos disponibles.");
+        }
         return MEDICOS;
     }
 

@@ -4,6 +4,7 @@ import controllers.ControlRegistrarCita;
 import exceptions.CitaExistenteException;
 import exceptions.MedicoNoDisponibleException;
 import exceptions.PacienteNoRegistradoException;
+import exceptions.SinMedicosException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -83,18 +84,17 @@ public class VistaConsola implements IObserver {
     private void apartarCita(PacienteDTO pacienteDTO) {
         System.out.println("\n--- Apartar cita ---");
 
-        List<MedicoDTO> medicosDTO = control.obtenerMedicosDTO();
-        if (medicosDTO.isEmpty()) {
-            System.out.println("No hay medicos disponibles en este momento.");
-            return;
-        }
-
-        System.out.println("\n--- Medicos disponibles ---");
-        for (MedicoDTO m : medicosDTO) {
-            System.out.println("ID: " + m.getId()
-                    + " | " + m.getNombre()
-                    + " | " + m.getEspecialidad()
-                    + " | Consultorio: " + m.getConsultorio());
+        try {
+            List<MedicoDTO> medicosDTO = control.obtenerMedicosDTO();
+            System.out.println("\n--- Medicos disponibles ---");
+            for (MedicoDTO m : medicosDTO) {
+                System.out.println("ID: " + m.getId()
+                        + " | " + m.getNombre()
+                        + " | " + m.getEspecialidad()
+                        + " | Consultorio: " + m.getConsultorio());
+            }
+        } catch (SinMedicosException e) {
+            System.out.println("Error: " + e.getMessage());
         }
 
         MedicoDTO medicoDTO = null;
@@ -164,5 +164,5 @@ public class VistaConsola implements IObserver {
         System.out.println("\nPresione ENTER para volver al menu...");
         sc.nextLine();
     }
-    
+
 }

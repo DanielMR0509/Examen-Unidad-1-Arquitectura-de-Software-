@@ -3,6 +3,7 @@ package controllers;
 import exceptions.CitaExistenteException;
 import exceptions.MedicoNoDisponibleException;
 import exceptions.PacienteNoRegistradoException;
+import exceptions.SinMedicosException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -98,8 +99,9 @@ public class ControlRegistrarCita implements ISubject {
      * Lista todos los médicos disponibles
      *
      * @return
+     * @throws exceptions.SinMedicosException
      */
-    public List<MedicoDTO> obtenerMedicosDTO() {
+    public List<MedicoDTO> obtenerMedicosDTO() throws SinMedicosException {
         return MedicoDAO.obtenerMedicos().stream()
                 .map(MapperDTO::toDTO)
                 .toList();
