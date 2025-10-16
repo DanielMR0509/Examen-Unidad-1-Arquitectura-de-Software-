@@ -1,0 +1,17 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ */
+package models;
+
+import models.dto.CitaDTO;
+
+/**
+ *
+ * @author itsyu
+ */
+public interface ISubject {
+    public void agregarObservador(IObserver observador);
+    public void eliminarObservador(IObserver observador);
+    public void notificarObservadores(CitaDTO citaDTO);
+}
