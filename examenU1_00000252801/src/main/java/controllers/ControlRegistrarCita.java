@@ -1,6 +1,7 @@
 package controllers;
 
 import exceptions.CitaExistenteException;
+import exceptions.MedicoInexistenteException;
 import exceptions.MedicoNoDisponibleException;
 import exceptions.PacienteNoRegistradoException;
 import exceptions.SinMedicosException;
@@ -112,7 +113,7 @@ public class ControlRegistrarCita implements ISubject {
      *
      * @param numeroSS
      * @return
-     * @throws exceptions.PacienteNoRegistradoException
+     * @throws PacienteNoRegistradoException
      */
     public PacienteDTO buscarPacienteDTO(int numeroSS) throws PacienteNoRegistradoException {
         Paciente paciente = PacienteDAO.buscarPorNumeroSeguridadSocial(numeroSS);
@@ -124,8 +125,9 @@ public class ControlRegistrarCita implements ISubject {
      *
      * @param id
      * @return
+     * @throws MedicoInexistenteException
      */
-    public MedicoDTO buscarMedicoDTO(int id) {
+    public MedicoDTO buscarMedicoDTO(int id) throws MedicoInexistenteException {
         Medico medico = MedicoDAO.buscarPorId(id);
         return MapperDTO.toDTO(medico);
     }

@@ -14,6 +14,7 @@ models\dto\MedicoDTO.class
 models\Medico.class
 utils\MapperDTO.class
 exceptions\MedicoNoDisponibleException.class
+exceptions\MedicoInexistenteException.class
 models\IObserver.class
 views\VistaConsola.class
 models\dao\PacienteDAO.class

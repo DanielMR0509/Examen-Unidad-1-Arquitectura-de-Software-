@@ -1,5 +1,6 @@
 package models.dao;
 
+import exceptions.MedicoInexistenteException;
 import exceptions.MedicoNoDisponibleException;
 import exceptions.SinMedicosException;
 import java.time.DayOfWeek;
@@ -51,12 +52,14 @@ public class MedicoDAO {
      * 
      * @param id identificador único del médico
      * @return el objeto Medico si existe, o null si no se encuentra
+     * @throws MedicoInexistenteException si el médico a buscar no existe
      */
-    public static Medico buscarPorId(int id) {
+    public static Medico buscarPorId(int id) throws MedicoInexistenteException {
         return MEDICOS.stream()
                 .filter(m -> m.getId() == id)
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(() -> new MedicoInexistenteException(
+                        "Medico con ID: " + id + " no esta registrado."));
     }
 
     /**

@@ -2,6 +2,7 @@ package views;
 
 import controllers.ControlRegistrarCita;
 import exceptions.CitaExistenteException;
+import exceptions.MedicoInexistenteException;
 import exceptions.MedicoNoDisponibleException;
 import exceptions.PacienteNoRegistradoException;
 import exceptions.SinMedicosException;
@@ -108,6 +109,8 @@ public class VistaConsola implements IObserver {
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Ingrese un numero valido.");
+            } catch (MedicoInexistenteException e) {
+                System.out.println("Error: " + e.getMessage());
             }
         }
 

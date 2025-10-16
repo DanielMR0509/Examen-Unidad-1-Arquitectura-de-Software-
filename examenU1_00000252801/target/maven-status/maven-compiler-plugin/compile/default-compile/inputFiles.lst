@@ -1,5 +1,6 @@
 C:\Users\itsyu\OneDrive\Documents\GitHub\Examen-Unidad-1-Arquitectura-de-Software-\examenU1_00000252801\src\main\java\controllers\ControlRegistrarCita.java
 C:\Users\itsyu\OneDrive\Documents\GitHub\Examen-Unidad-1-Arquitectura-de-Software-\examenU1_00000252801\src\main\java\exceptions\CitaExistenteException.java
+C:\Users\itsyu\OneDrive\Documents\GitHub\Examen-Unidad-1-Arquitectura-de-Software-\examenU1_00000252801\src\main\java\exceptions\MedicoInexistenteException.java
 C:\Users\itsyu\OneDrive\Documents\GitHub\Examen-Unidad-1-Arquitectura-de-Software-\examenU1_00000252801\src\main\java\exceptions\MedicoNoDisponibleException.java
 C:\Users\itsyu\OneDrive\Documents\GitHub\Examen-Unidad-1-Arquitectura-de-Software-\examenU1_00000252801\src\main\java\exceptions\PacienteNoRegistradoException.java
 C:\Users\itsyu\OneDrive\Documents\GitHub\Examen-Unidad-1-Arquitectura-de-Software-\examenU1_00000252801\src\main\java\exceptions\SinMedicosException.java
